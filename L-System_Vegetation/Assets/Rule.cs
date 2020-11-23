@@ -9,6 +9,16 @@
         str_OutR = o;
     }
 
+    public string GetIn()
+    {
+        return str_InR;
+    }
+
+    public string GetOut()
+    {
+        return str_OutR;
+    }
+
     // Start is called before the first frame update
     private void Start()
     {
