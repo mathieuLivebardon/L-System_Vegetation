@@ -157,6 +157,7 @@ MonoBehaviour:
   angle: 30
   branch: {fileID: 5004015222042168004, guid: da5a56b371a3fa847a6a033ed3670dba, type: 3}
   line: {fileID: 5004015222042168005, guid: da5a56b371a3fa847a6a033ed3670dba, type: 3}
+  branches: 0
 --- !u!4 &385493565
 Transform:
   m_ObjectHideFlags: 0

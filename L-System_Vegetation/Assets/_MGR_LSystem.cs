@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 
 public struct TransformInfo
@@ -27,9 +28,13 @@ public class _MGR_LSystem : MonoBehaviour
     [SerializeField] public float angle = 10.0f;
     [SerializeField] private GameObject branch;
 
+
+
     List<TransformInfo> transformStack;
 
     public DrawLine line;
+
+    public int branches;
 
     //Start before the Start()
     private void Awake()
@@ -42,25 +47,30 @@ public class _MGR_LSystem : MonoBehaviour
             //Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of a GameManager.
             Destroy(gameObject);
 
-        SetSentence(axiom);
 
         lst_Rules = new List<Rule>();
 
         lst_Rules.Add(new Rule("A", "ABC"));
         lst_Rules.Add(new Rule("B", "A"));
-        lst_Rules.Add(new Rule("F", "FXF"));
-        lst_Rules.Add(new Rule("X", "[F-[[X]+X]+F[+FX]-X]"));
+        lst_Rules.Add(new Rule("F", "FF"));
+        lst_Rules.Add(new Rule("X", "[FF[+XF-F+FX]--F+F-FX]"));
 
         transformStack = new List<TransformInfo>();
+        branches = 0;
+
+        SetSentence(axiom);
+        //length *= 0.3f;
     }
+
 
     private void generate()
     {
         string nextSentence = "";
 
-        bool found = false;
+        bool found;
         for (int i = 0; i < sentence.Length; i++)
         {
+            found = false;
             string current = sentence[i].ToString();
             foreach (Rule r in lst_Rules)
             {
@@ -92,17 +102,22 @@ public class _MGR_LSystem : MonoBehaviour
     {
         foreach (char current in sentence)
         {
+            /*Debug.Log("Lecture de : "+current);
+            yield return new WaitForSeconds(1f);*/
             switch (current)
             {
                 case 'F':
-
                     Vector3 initialPosition = transform.position;
                     transform.Translate(Vector3.up * length);
-
                     GameObject treeSegment = Instantiate(branch);
                     treeSegment.GetComponent<LineRenderer>().SetPosition(0, initialPosition);
                     treeSegment.GetComponent<LineRenderer>().SetPosition(1, transform.position);
-                    yield return new WaitForSeconds(.1f);
+                    branches++;
+                    //yield return new WaitForSeconds(0f);
+                    break;
+
+                case 'X':
+
                     break;
 
                 case '+':
@@ -115,13 +130,18 @@ public class _MGR_LSystem : MonoBehaviour
 
                 case ']':
                     TransformInfo ti = transformStack[transformStack.Count-1];
-                    transformStack.Remove(transformStack[transformStack.Count - 1]);
+                    //Debug.Log(transformStack.Count);
                     transform.position = ti.pos;
                     transform.rotation = ti.rot;
+                    transformStack.Remove(transformStack[transformStack.Count - 1]);
+                    //Debug.Log(transformStack.Count);
                     break;
 
                 case '-':
                     transform.Rotate(Vector3.forward * angle);
+                    break;
+                default:
+                    throw new InvalidOperationException("Invalid l-tree operation");
                     break;
             }
         }
