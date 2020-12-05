@@ -152,10 +152,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7799ee68a37abbe49badd2ebea58f9f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axiom: X
-  length: 1
+  axiom: T
+  initialLength: 30
+  initialWidth: 6
   angle: 30
   branch: {fileID: 5004015222042168004, guid: da5a56b371a3fa847a6a033ed3670dba, type: 3}
+  lCoef: 0.3
+  wCoef: 0.5
+  wait: 0
   line: {fileID: 5004015222042168005, guid: da5a56b371a3fa847a6a033ed3670dba, type: 3}
   branches: 0
 --- !u!4 &385493565
@@ -257,13 +261,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: 0.58357626, y: -0.8037298, z: 0.066029035, w: 0.09538079}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 12.56, y: -175.519, z: -71.472}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0

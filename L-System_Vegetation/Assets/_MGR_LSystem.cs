@@ -1,8 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
-
+using Random = UnityEngine.Random;
 
 public struct TransformInfo
 {
@@ -15,6 +15,7 @@ public struct TransformInfo
         this.rot = rot;
     }
 }
+
 public class _MGR_LSystem : MonoBehaviour
 {
     private static _MGR_LSystem pInstance = null;
@@ -24,13 +25,19 @@ public class _MGR_LSystem : MonoBehaviour
 
     public string axiom;
     private string sentence;
-    [SerializeField] public float length = 10.0f;
+    [SerializeField] public float initialLength = 30.0f;
+    [SerializeField] public float initialWidth = 5.0f;
     [SerializeField] public float angle = 10.0f;
-    [SerializeField] private GameObject branch;
+    [SerializeField] public GameObject branch;
 
+    private LineRenderer currentLine;
 
+    public float lCoef;
+    public float wCoef;
 
-    List<TransformInfo> transformStack;
+    public float wait;
+
+    private List<TransformInfo> transformStack;
 
     public DrawLine line;
 
@@ -47,21 +54,17 @@ public class _MGR_LSystem : MonoBehaviour
             //Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of a GameManager.
             Destroy(gameObject);
 
-
         lst_Rules = new List<Rule>();
 
-        lst_Rules.Add(new Rule("A", "ABC"));
-        lst_Rules.Add(new Rule("B", "A"));
-        lst_Rules.Add(new Rule("F", "FF"));
-        lst_Rules.Add(new Rule("X", "[FF[+XF-F+FX]--F+F-FX]"));
+        lst_Rules.Add(new Rule("T", "FX"));
+        lst_Rules.Add(new Rule("F", "F"));
+        lst_Rules.Add(new Rule("X", "[+F-F[+XF-F+FX]--F+F-FX]"));
 
         transformStack = new List<TransformInfo>();
         branches = 0;
-
+        currentLine = null;
         SetSentence(axiom);
-        //length *= 0.3f;
     }
-
 
     private void generate()
     {
@@ -89,6 +92,7 @@ public class _MGR_LSystem : MonoBehaviour
         }
 
         SetSentence(nextSentence);
+        wait *= 0.5f;
     }
 
     private void SetSentence(string newSentence)
@@ -98,51 +102,72 @@ public class _MGR_LSystem : MonoBehaviour
         StartCoroutine("turtle");
     }
 
-    IEnumerator turtle()
+    private IEnumerator turtle()
     {
+        float length = initialLength;
+        float width = initialWidth;
         foreach (char current in sentence)
         {
-            /*Debug.Log("Lecture de : "+current);
-            yield return new WaitForSeconds(1f);*/
+            //Debug.Log(current);
             switch (current)
             {
                 case 'F':
                     Vector3 initialPosition = transform.position;
                     transform.Translate(Vector3.up * length);
-                    GameObject treeSegment = Instantiate(branch);
-                    treeSegment.GetComponent<LineRenderer>().SetPosition(0, initialPosition);
-                    treeSegment.GetComponent<LineRenderer>().SetPosition(1, transform.position);
-                    branches++;
-                    //yield return new WaitForSeconds(0f);
+                    if (currentLine == null)
+                    {
+                        GameObject treeSegment = Instantiate(branch);
+                        treeSegment.GetComponent<LineRenderer>().SetPosition(0, initialPosition);
+                        treeSegment.GetComponent<LineRenderer>().SetPosition(1, transform.position);
+                        treeSegment.GetComponent<LineRenderer>().widthMultiplier = width;
+                        branches++;
+                        currentLine = treeSegment.GetComponent<LineRenderer>();
+                    }
+                    else
+                    {
+                        currentLine.positionCount++;
+                        currentLine.SetPosition(currentLine.positionCount - 1, transform.position);
+                        //currentLine.widthMultiplier = width;
+                    }
+                    yield return new WaitForSeconds(wait);
                     break;
 
                 case 'X':
+                    break;
 
+                case 'T':
                     break;
 
                 case '+':
-                    transform.Rotate(Vector3.back * angle);
+                    transform.Rotate(Vector3.back * GetRandomAngle());
+                    transform.Rotate(Vector3.left * GetRandomAngle());
+
                     break;
 
                 case '[':
                     transformStack.Add(new TransformInfo(transform.position, transform.rotation));
+                    length *= lCoef;
+                    width *= wCoef;
+
                     break;
 
                 case ']':
-                    TransformInfo ti = transformStack[transformStack.Count-1];
-                    //Debug.Log(transformStack.Count);
+                    TransformInfo ti = transformStack[transformStack.Count - 1];
                     transform.position = ti.pos;
                     transform.rotation = ti.rot;
                     transformStack.Remove(transformStack[transformStack.Count - 1]);
-                    //Debug.Log(transformStack.Count);
+                    length *= 1 / lCoef;
+                    width *= 1 / wCoef;
+                    currentLine = null;
                     break;
 
                 case '-':
-                    transform.Rotate(Vector3.forward * angle);
+                    transform.Rotate(Vector3.forward * GetRandomAngle());
+                    transform.Rotate(Vector3.right * GetRandomAngle());
                     break;
+
                 default:
                     throw new InvalidOperationException("Invalid l-tree operation");
-                    break;
             }
         }
         yield return null;
@@ -155,5 +180,10 @@ public class _MGR_LSystem : MonoBehaviour
         {
             generate();
         }
+    }
+
+    private float GetRandomAngle()
+    {
+        return Random.Range(0.0f, 50.0f);
     }
 }
