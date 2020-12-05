@@ -154,12 +154,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   axiom: T
   initialLength: 30
-  initialWidth: 6
+  initialWidth: 10
   angle: 30
   branch: {fileID: 5004015222042168004, guid: da5a56b371a3fa847a6a033ed3670dba, type: 3}
-  lCoef: 0.3
-  wCoef: 0.5
-  wait: 0
+  flower: {fileID: 1073793716598711808, guid: 16d9157bb0254d646a75343594f79c0c, type: 3}
+  lCoef: 0.8
+  wCoef: 0.8
+  wait: 1
   line: {fileID: 5004015222042168005, guid: da5a56b371a3fa847a6a033ed3670dba, type: 3}
   branches: 0
 --- !u!4 &385493565
@@ -170,7 +171,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 385493563}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -73, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

@@ -29,6 +29,7 @@ public class _MGR_LSystem : MonoBehaviour
     [SerializeField] public float initialWidth = 5.0f;
     [SerializeField] public float angle = 10.0f;
     [SerializeField] public GameObject branch;
+    [SerializeField] public GameObject flower;
 
     private LineRenderer currentLine;
 
@@ -152,6 +153,7 @@ public class _MGR_LSystem : MonoBehaviour
                     break;
 
                 case ']':
+                    Instantiate(flower,transform.position,transform.rotation);
                     TransformInfo ti = transformStack[transformStack.Count - 1];
                     transform.position = ti.pos;
                     transform.rotation = ti.rot;
