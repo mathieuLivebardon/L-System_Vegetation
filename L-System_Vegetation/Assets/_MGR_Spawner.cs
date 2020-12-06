@@ -15,11 +15,11 @@ public class _MGR_Spawner : MonoBehaviour
 
     private void Awake()
     {
-        if(pInstance == null)
+        if (pInstance == null)
         {
             pInstance = this;
         }
-        else if (pInstance !=this)
+        else if (pInstance != this)
         {
             Destroy(gameObject);
         }
@@ -41,7 +41,7 @@ public class _MGR_Spawner : MonoBehaviour
             newLS.transform.localPosition = Vector3.zero;
             newLS.branch = this.branch;
             newLS.flower = flowers[Random.Range(0, flowers.Count)];
-            newLS.Initialise();
+            newLS.InitialiseRandom();
             trees.Add(newLS);
         }
     }

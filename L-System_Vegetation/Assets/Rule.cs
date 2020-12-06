@@ -18,5 +18,4 @@
     {
         return str_OutR;
     }
-
 }

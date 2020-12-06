@@ -20,29 +20,26 @@ public class LSystem : MonoBehaviour
 {
     public List<Rule> lst_Rules;
 
-    public string axiom;
+    [SerializeField] public string axiom = "T";
     private string sentence;
+
+    [SerializeField] public GameObject branch;
+    [SerializeField] public GameObject flower;
     [SerializeField] public float initialLength = 30.0f;
     [SerializeField] public float initialWidth = 5.0f;
     [SerializeField] public float angle = 10.0f;
-    [SerializeField] public GameObject branch;
-    [SerializeField] public GameObject flower;
+    [SerializeField] public float lCoef = 0.9f;
+    [SerializeField] public float wCoef = 0.8f;
 
     private LineRenderer currentLine;
-
-    public float lCoef;
-    public float wCoef;
 
     public float wait;
 
     private List<TransformInfo> transformStack;
 
-    public DrawLine line;
-
     public int branches;
 
-
-    void Start()
+    private void Start()
     {
         lst_Rules = new List<Rule>();
 
@@ -56,15 +53,14 @@ public class LSystem : MonoBehaviour
         SetSentence(axiom);
     }
 
-
-    public void Initialise()
+    public void InitialiseRandom()
     {
         initialLength = Random.Range(15.0f, 30.0f);
         initialWidth = Random.Range(3.0f, 7.0f);
         angle = Random.Range(30.0f, 50.0f);
 
-        lCoef = Random.Range(0.3f, 0.9f);
-        wCoef = Random.Range(0.3f, 0.9f);
+        lCoef = Random.Range(0.2f, 0.9f);
+        wCoef = Random.Range(0.6f, 0.9f);
     }
 
     private void generate()
@@ -98,6 +94,7 @@ public class LSystem : MonoBehaviour
 
     private void SetSentence(string newSentence)
     {
+        Debug.Log(newSentence);
         sentence = newSentence;
         StartCoroutine("turtle");
     }
@@ -126,7 +123,6 @@ public class LSystem : MonoBehaviour
                     {
                         currentLine.positionCount++;
                         currentLine.SetPosition(currentLine.positionCount - 1, transform.localPosition);
-                        //currentLine.widthMultiplier = width;
                     }
                     if (wait > 0)
                     {
@@ -141,21 +137,19 @@ public class LSystem : MonoBehaviour
                     break;
 
                 case '+':
-                    transform.Rotate(Vector3.back * GetRandomAngle());
-                    transform.Rotate(Vector3.left * GetRandomAngle());
-
+                    transform.Rotate(Vector3.forward * GetRandomAngle());
+                    transform.Rotate(Vector3.right * GetRandomAngle());
                     break;
 
                 case '[':
                     transformStack.Add(new TransformInfo(transform.position, transform.rotation));
                     length *= lCoef;
                     width *= wCoef;
-
                     break;
 
                 case ']':
                     GameObject flowerInstance = Instantiate(flower, transform.parent);
-                    flowerInstance.transform.localPosition= transform.localPosition;
+                    flowerInstance.transform.localPosition = transform.localPosition;
                     flowerInstance.transform.localRotation = transform.localRotation;
                     TransformInfo ti = transformStack[transformStack.Count - 1];
                     transform.position = ti.pos;
@@ -167,8 +161,8 @@ public class LSystem : MonoBehaviour
                     break;
 
                 case '-':
-                    transform.Rotate(Vector3.forward * GetRandomAngle());
-                    transform.Rotate(Vector3.right * GetRandomAngle());
+                    transform.Rotate(Vector3.back * GetRandomAngle());
+                    transform.Rotate(Vector3.left * GetRandomAngle());
                     break;
 
                 default:
