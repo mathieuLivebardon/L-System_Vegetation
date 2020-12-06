@@ -219,12 +219,11 @@ public void InitialiseRandom()
     wCoef = Random.Range(0.6f, 0.9f);
 }
 ```
+
+
+# Resultats
+La méthode utilisée L-System (+Aléatoire) semble donnée de bons résultats.
+
 ![](./Ressources/VingtArbres.gif)
-
-# Conclusion
-
 ![](./Ressources/ArbreExemple.png)
 ![](./Ressources/ArbreExemple2.png)
-
-
-La méthode utilisée L-System (+Aléatoire) semble donnée de bons résultats.

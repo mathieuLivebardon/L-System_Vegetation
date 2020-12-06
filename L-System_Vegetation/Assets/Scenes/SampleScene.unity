@@ -411,9 +411,25 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1011881420719677229, guid: ebb07a112dbaf04448aeca1106ef64fe, type: 3}
+      propertyPath: flowers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1011881420719677229, guid: ebb07a112dbaf04448aeca1106ef64fe, type: 3}
       propertyPath: nTrees
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 1011881420719677229, guid: ebb07a112dbaf04448aeca1106ef64fe, type: 3}
+      propertyPath: flowers.Array.data[0]
+      value: 
+      objectReference: {fileID: 1073793716598711808, guid: 16d9157bb0254d646a75343594f79c0c, type: 3}
+    - target: {fileID: 1011881420719677229, guid: ebb07a112dbaf04448aeca1106ef64fe, type: 3}
+      propertyPath: flowers.Array.data[2]
+      value: 
+      objectReference: {fileID: 5498428890364940190, guid: 41877c75b97f7744f9f3ad3ecca16a0e, type: 3}
+    - target: {fileID: 1011881420719677229, guid: ebb07a112dbaf04448aeca1106ef64fe, type: 3}
+      propertyPath: flowers.Array.data[1]
+      value: 
+      objectReference: {fileID: 5498428890364940190, guid: 41877c75b97f7744f9f3ad3ecca16a0e, type: 3}
     - target: {fileID: 1011881420719677234, guid: ebb07a112dbaf04448aeca1106ef64fe, type: 3}
       propertyPath: m_Name
       value: TreeSpawner
@@ -477,3 +493,60 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50c9ae360e14b0b41b07fbfed09a65be, type: 3}
+--- !u!1001 &3291440639829542440
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2883132622005985141, guid: 99cc5d9f0671a744abe39aee9f591b9d, type: 3}
+      propertyPath: m_Name
+      value: Cube
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571144006438257033, guid: 99cc5d9f0671a744abe39aee9f591b9d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -56.337173
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571144006438257033, guid: 99cc5d9f0671a744abe39aee9f591b9d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 61.19341
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571144006438257033, guid: 99cc5d9f0671a744abe39aee9f591b9d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.6646957
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571144006438257033, guid: 99cc5d9f0671a744abe39aee9f591b9d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571144006438257033, guid: 99cc5d9f0671a744abe39aee9f591b9d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571144006438257033, guid: 99cc5d9f0671a744abe39aee9f591b9d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571144006438257033, guid: 99cc5d9f0671a744abe39aee9f591b9d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571144006438257033, guid: 99cc5d9f0671a744abe39aee9f591b9d, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571144006438257033, guid: 99cc5d9f0671a744abe39aee9f591b9d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571144006438257033, guid: 99cc5d9f0671a744abe39aee9f591b9d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571144006438257033, guid: 99cc5d9f0671a744abe39aee9f591b9d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 99cc5d9f0671a744abe39aee9f591b9d, type: 3}
