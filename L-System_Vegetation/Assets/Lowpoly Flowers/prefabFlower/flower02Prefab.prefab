@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1073793716599011872}
   - component: {fileID: 1073793716591318464}
   m_Layer: 0
-  m_Name: flower02
+  m_Name: flower02Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24,9 +24,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1073793716598711808}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 87.726974, y: 421.22128, z: 219.34633}
-  m_LocalScale: {x: 352, y: 352, z: 352}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 250, y: 250, z: 250}
   m_Children:
   - {fileID: 1073793716599011874}
   - {fileID: 1073793716599011876}
@@ -309,6 +309,7 @@ GameObject:
   - component: {fileID: 1073793716599011880}
   - component: {fileID: 1073793716597717510}
   - component: {fileID: 1073793716596717766}
+  - component: {fileID: 6339277519269860091}
   m_Layer: 0
   m_Name: pPipe12
   m_TagString: Untagged
@@ -379,6 +380,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6339277519269860091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073793716598711816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fca9304d459e9144a835b647e5ffa160, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1073793716598711818
 GameObject:
   m_ObjectHideFlags: 0
