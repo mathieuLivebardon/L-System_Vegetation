@@ -63,7 +63,7 @@ public class LSystem : MonoBehaviour
         wCoef = Random.Range(0.6f, 0.9f);
     }
 
-    private void generate()
+    private void generate() 
     {
         string nextSentence = "";
 
