@@ -1,5 +1,5 @@
 # Generation procédurale d'arbre (L-System)
-Apllication Unity3D 2020.1.4f1
+Application Unity3D 2020.1.4f1
 
 ![](./Ressources/ConstructionArbreLSystem.gif)
 
